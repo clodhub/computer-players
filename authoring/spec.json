@@ -1,6 +1,6 @@
 {
   "name": "computer-players",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "title": "Computer players",
   "description": "Computer players that fill empty seats, play for people who are away, and wait a human-like time before moving, over an injected player strategy, game clock and seating.",
   "facilities": [
@@ -159,13 +159,17 @@
     {
       "reference": {
         "name": "ourapps-ae/computer-players-class",
-        "version": "1.0.0",
-        "digest": "ec44ada1a37234b3419fbe781902de9312fc77edd63a76593db1949a2a7bfaab"
+        "version": "1.1.0",
+        "digest": "81789b353a08614c650b23dfe1459da236738454b7e9412de362fe780fed13ff"
       },
       "descriptor": {
-        "format": 1,
+        "format": 2,
         "name": "ourapps-ae/computer-players-class",
-        "version": "1.0.0",
+        "version": "1.1.0",
+        "title": "Computer players",
+        "summary": "Computer opponents that take empty seats and act in their turn",
+        "category": "games/opponents",
+        "presentation": "none",
         "provides": [
           {
             "type": "ae/computer-players",
@@ -270,8 +274,8 @@
   "implements": [
     {
       "name": "ourapps-ae/computer-players-class",
-      "version": "1.0.0",
-      "digest": "ec44ada1a37234b3419fbe781902de9312fc77edd63a76593db1949a2a7bfaab"
+      "version": "1.1.0",
+      "digest": "81789b353a08614c650b23dfe1459da236738454b7e9412de362fe780fed13ff"
     }
   ],
   "upstream": [],
@@ -335,5 +339,11 @@
         "manual": "Without the package manager, install Node 26 from nodejs.org (the installer, or the zip or tar archive with its folder put first on PATH); on Linux also from the NodeSource repository."
       }
     ]
-  }
+  },
+  "release": {
+    "channel": "features",
+    "fixes": []
+  },
+  "images": [],
+  "vulnerabilityWaivers": []
 }
