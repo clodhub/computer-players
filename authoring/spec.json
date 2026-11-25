@@ -1,6 +1,6 @@
 {
   "name": "computer-players",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "title": "Computer players",
   "description": "Computer players that fill empty seats, play for people who are away, and wait a human-like time before moving, over an injected player strategy, game clock and seating.",
   "facilities": [
@@ -112,7 +112,7 @@
         "tests/web.test.ts"
       ],
       "tools": {
-        "node": "26.5.0"
+        "node": "26.5"
       },
       "fixtures": [
         "tests/fakes.ts",
@@ -121,7 +121,7 @@
     }
   ],
   "tools": {
-    "node": "26.5.0"
+    "node": "26.5"
   },
   "platforms": [
     "server"
@@ -135,7 +135,7 @@
     "scenarios": "A person sits alone, taps add computer and a computer named Robin sits. With mode `fill-empty` the host starts with two people at a nine-seat room and seven computers join. A computer is next to act at action-clock 10000 with the table settled at 14000: it moves at 14000 plus 300 plus up to 1200 more. With mode `on-request` or `fill-empty` the computer side plays for a person whose connection has gone.",
     "updates": "Patch updates replace files; no stored data of its own beyond the strategy memory in the game state. Removal deletes the owned sources and the application's imports. A computer plays for a person who is away unless mode is `none`."
   },
-  "agentInstructions": "Select `ourapps-ae/computer-players` once per recipe, always. Map the recipe's computer players answer to `mode`: `none`, `on-request` (default) or `fill-empty`. Set `names` only when the recipe has its own list. Connect `player-strategy` to the strategy component (poker-strategy for poker), `game-clock` and `seating`, then connect the provided `computer-players` to turn-engine (it needs the port even for mode `none`). Give `names` as words separated by spaces.",
+  "agentInstructions": "Select `clodhub/computer-players` once per recipe, always. Map the recipe's computer players answer to `mode`: `none`, `on-request` (default) or `fill-empty`. Set `names` only when the recipe has its own list. Connect `player-strategy` to the strategy component (poker-strategy for poker), `game-clock` and `seating`, then connect the provided `computer-players` to turn-engine (it needs the port even for mode `none`). Give `names` as words separated by spaces.",
   "developerInstructions": "Nothing to supply: no accounts or keys. Choose names that fit the application (each 1 to 20 plain characters); the shipped list is neutral. To change how quickly computers play, change `thinkMinMs`, `thinkSpreadMs` and `minimumGapMs`. To check it works, run the commands below.",
   "suitability": {
     "format": 1,
@@ -158,13 +158,13 @@
   "classes": [
     {
       "reference": {
-        "name": "ourapps-ae/computer-players-class",
+        "name": "clodhub/computer-players-class",
         "version": "1.1.0",
-        "digest": "81789b353a08614c650b23dfe1459da236738454b7e9412de362fe780fed13ff"
+        "digest": "a7c7d9b24c5c193634c12b2000afc9c5cf4d5e8e7d4384b88d2b3522ecd4c770"
       },
       "descriptor": {
         "format": 2,
-        "name": "ourapps-ae/computer-players-class",
+        "name": "clodhub/computer-players-class",
         "version": "1.1.0",
         "title": "Computer players",
         "summary": "Computer opponents that take empty seats and act in their turn",
@@ -237,7 +237,7 @@
           },
           {
             "path": "classes/computer-players-class/computer-players.json",
-            "digest": "ce146a6ec81ab8b0738e88d1be016ea5c66fe9127b345488c292bb87979b8675"
+            "digest": "7ae42500d0a299cfc06a14d8167c5ec9f19c650330091f15ac5d702f96c6f228"
           },
           {
             "path": "classes/computer-players-class/runtime.mjs",
@@ -273,9 +273,9 @@
   ],
   "implements": [
     {
-      "name": "ourapps-ae/computer-players-class",
+      "name": "clodhub/computer-players-class",
       "version": "1.1.0",
-      "digest": "81789b353a08614c650b23dfe1459da236738454b7e9412de362fe780fed13ff"
+      "digest": "a7c7d9b24c5c193634c12b2000afc9c5cf4d5e8e7d4384b88d2b3522ecd4c770"
     }
   ],
   "upstream": [],
@@ -295,10 +295,10 @@
     "owners": [
       "Level N Ltd"
     ],
-    "contact": "https://github.com/ourapps-ae/computer-players/issues",
-    "repository": "https://github.com/ourapps-ae/computer-players",
+    "contact": "https://github.com/clodhub/computer-players/issues",
+    "repository": "https://github.com/clodhub/computer-players",
     "updates": {
-      "source": "https://github.com/ourapps-ae/computer-players/releases",
+      "source": "https://github.com/clodhub/computer-players/releases",
       "strategy": "manual"
     }
   },

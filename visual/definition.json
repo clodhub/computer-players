@@ -1,10 +1,10 @@
 {
-  "id": "ourapps-ae.computer-players",
+  "id": "clodhub.computer-players",
   "name": "Computer players",
   "kind": "component",
   "status": "example",
-  "package": "ourapps-ae/computer-players",
-  "version": "0.10.0",
+  "package": "clodhub/computer-players",
+  "version": "0.11.0",
   "ports": [
     {
       "id": "player-strategy",
