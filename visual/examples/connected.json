@@ -7,19 +7,19 @@
   "focus": "component",
   "definitions": [
     {
-      "id": "clodhub.computer-players",
+      "id": "com.clodhub.computer-players",
       "name": "Computer players",
       "kind": "component",
       "status": "example",
-      "package": "clodhub/computer-players",
-      "version": "0.11.0",
+      "package": "pkg:clod/com.clodhub/computer-players",
+      "version": "0.12.0",
       "ports": [
         {
           "id": "player-strategy",
           "name": "Player strategy",
           "direction": "input",
           "kind": "interface",
-          "type": "ae/player-strategy",
+          "type": "com.clodhub/player-strategy",
           "version": "1.0.0",
           "required": true,
           "cardinality": "one"
@@ -29,7 +29,7 @@
           "name": "Game clock",
           "direction": "input",
           "kind": "interface",
-          "type": "ae/game-clock",
+          "type": "com.clodhub/game-clock",
           "version": "1.0.0",
           "required": true,
           "cardinality": "one"
@@ -39,7 +39,7 @@
           "name": "Seating",
           "direction": "input",
           "kind": "interface",
-          "type": "ae/seating",
+          "type": "com.clodhub/seating",
           "version": "1.0.0",
           "required": true,
           "cardinality": "one"
@@ -49,7 +49,7 @@
           "name": "Computer players",
           "direction": "output",
           "kind": "interface",
-          "type": "ae/computer-players",
+          "type": "com.clodhub/computer-players",
           "version": "1.0.0"
         }
       ],
@@ -116,7 +116,7 @@
           "name": "Computer players",
           "direction": "input",
           "kind": "interface",
-          "type": "ae/computer-players",
+          "type": "com.clodhub/computer-players",
           "version": "1.0.0",
           "required": true,
           "cardinality": "one"
@@ -126,7 +126,7 @@
           "name": "Player strategy",
           "direction": "output",
           "kind": "interface",
-          "type": "ae/player-strategy",
+          "type": "com.clodhub/player-strategy",
           "version": "1.0.0"
         },
         {
@@ -134,7 +134,7 @@
           "name": "Game clock",
           "direction": "output",
           "kind": "interface",
-          "type": "ae/game-clock",
+          "type": "com.clodhub/game-clock",
           "version": "1.0.0"
         },
         {
@@ -142,7 +142,7 @@
           "name": "Seating",
           "direction": "output",
           "kind": "interface",
-          "type": "ae/seating",
+          "type": "com.clodhub/seating",
           "version": "1.0.0"
         }
       ],
@@ -153,7 +153,7 @@
     {
       "id": "component",
       "name": "Computer players",
-      "definition": "clodhub.computer-players",
+      "definition": "com.clodhub.computer-players",
       "configuration": {}
     },
     {

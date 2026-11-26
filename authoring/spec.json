@@ -1,6 +1,7 @@
 {
   "name": "computer-players",
-  "version": "0.11.0",
+  "version": "0.12.0",
+  "sourceRevision": "19905b75dbea89fbfd424d67fe26c81aaed0e018",
   "title": "Computer players",
   "description": "Computer players that fill empty seats, play for people who are away, and wait a human-like time before moving, over an injected player strategy, game clock and seating.",
   "facilities": [
@@ -28,7 +29,7 @@
   "provides": [
     {
       "id": "computer-players",
-      "type": "ae/computer-players",
+      "type": "com.clodhub/computer-players",
       "version": "1.0.0",
       "path": "interfaces/computer-players.json"
     }
@@ -36,19 +37,19 @@
   "requires": [
     {
       "id": "player-strategy",
-      "type": "ae/player-strategy",
+      "type": "com.clodhub/player-strategy",
       "version": "1.0.0",
       "path": "interfaces/required-player-strategy.json"
     },
     {
       "id": "game-clock",
-      "type": "ae/game-clock",
+      "type": "com.clodhub/game-clock",
       "version": "1.0.0",
       "path": "interfaces/required-game-clock.json"
     },
     {
       "id": "seating",
-      "type": "ae/seating",
+      "type": "com.clodhub/seating",
       "version": "1.0.0",
       "path": "interfaces/required-seating.json"
     }
@@ -131,11 +132,11 @@
     "userInputs": "Settings (all optional): `names` (a space separated list, default eight neutral first names; the installer's label grammar allows no comma, so a name from the setting cannot hold a space; `parseNames` splits on spaces, and the API takes a list; the recipe's poker names stay in the recipe), `mode` (`none`, `on-request` or `fill-empty`; default `on-request`; label grammar), `thinkMinMs` (300), `thinkSpreadMs` (1200), `minimumGapMs` (4000) and `rebuyDelayMs` (4000). `mode`: `none` seats no computer (`add` is refused, `fill` adds none, nobody plays for an absent person), which is how a recipe without computer players uses this component; `on-request` lets a person add a computer and has a computer play for a person who is away or sitting out; `fill-empty` does the same and also fills every empty seat when the game starts. `createComputers(...).settings` carries the derived values `enabled` (mode is not none), `fillEmptySeats` (mode is fill-empty) and `takeOverAbsent` (same as enabled). Names must be 1 to 20 plain characters and distinct.",
     "integration": "Build it once with `createComputers(settings, {strategy, clock, seating})` from `implementation/server/computers.ts`. The turn engine keeps the state (`create`) in the game state, calls `add` for the add-computer action, `fill` when the game starts, `actsFor` and `moveDeadline` when it sets a player's turn, `isDue` when the room asks for due moves, `choose` and `observe` for the strategy, and `rebuyDelayMs` for the tournament. The strategy's `observation` is whatever the game rules give a player as what they know. The clock is game-clock's `elapsed(clock, 'action')` and `wallAt(clock, 'action', ms)`; its state type is `ClockState`. The strategy is poker-strategy's `newMemory`, `choose(observation, playerId, rng, memory)` and `observe(memory, observation, playerId, move)`; `observe` may return the new memory or change it in place.",
     "infrastructure": "No service is deployed. The only state is the strategy's memory, part of the game state the room stores. No accounts or keys.",
-    "verification": "`node --test tests/web.test.ts` checks settings, neutral default names (none of the recipe's poker names), name list parsing (space separated, the default fitting aepm's label grammar), `mode` (the default, the three derived values for each mode, refusal of an unknown mode), mode `none`, adding until names or seats run out, filling, take-over of absent players, deadline arithmetic (settle, gap, thinking time, bounds), wake time, rebuy time, strategy calls that cannot change the stored memory, and the runnable consumer. The tests use small stand-ins for the strategy, clock and seating (`tests/fakes.ts`). No Swift or Kotlin: the recipe's clients have no computer-player code.",
+    "verification": "`node --test tests/web.test.ts` checks settings, neutral default names (none of the recipe's poker names), name list parsing (space separated, the default fitting clod's label grammar), `mode` (the default, the three derived values for each mode, refusal of an unknown mode), mode `none`, adding until names or seats run out, filling, take-over of absent players, deadline arithmetic (settle, gap, thinking time, bounds), wake time, rebuy time, strategy calls that cannot change the stored memory, and the runnable consumer. The tests use small stand-ins for the strategy, clock and seating (`tests/fakes.ts`). No Swift or Kotlin: the recipe's clients have no computer-player code.",
     "scenarios": "A person sits alone, taps add computer and a computer named Robin sits. With mode `fill-empty` the host starts with two people at a nine-seat room and seven computers join. A computer is next to act at action-clock 10000 with the table settled at 14000: it moves at 14000 plus 300 plus up to 1200 more. With mode `on-request` or `fill-empty` the computer side plays for a person whose connection has gone.",
     "updates": "Patch updates replace files; no stored data of its own beyond the strategy memory in the game state. Removal deletes the owned sources and the application's imports. A computer plays for a person who is away unless mode is `none`."
   },
-  "agentInstructions": "Select `clodhub/computer-players` once per recipe, always. Map the recipe's computer players answer to `mode`: `none`, `on-request` (default) or `fill-empty`. Set `names` only when the recipe has its own list. Connect `player-strategy` to the strategy component (poker-strategy for poker), `game-clock` and `seating`, then connect the provided `computer-players` to turn-engine (it needs the port even for mode `none`). Give `names` as words separated by spaces.",
+  "agentInstructions": "Select `pkg:clod/com.clodhub/computer-players` once per recipe, always. Map the recipe's computer players answer to `mode`: `none`, `on-request` (default) or `fill-empty`. Set `names` only when the recipe has its own list. Connect `player-strategy` to the strategy component (poker-strategy for poker), `game-clock` and `seating`, then connect the provided `computer-players` to turn-engine (it needs the port even for mode `none`). Give `names` as words separated by spaces.",
   "developerInstructions": "Nothing to supply: no accounts or keys. Choose names that fit the application (each 1 to 20 plain characters); the shipped list is neutral. To change how quickly computers play, change `thinkMinMs`, `thinkSpreadMs` and `minimumGapMs`. To check it works, run the commands below.",
   "suitability": {
     "format": 1,
@@ -158,13 +159,13 @@
   "classes": [
     {
       "reference": {
-        "name": "clodhub/computer-players-class",
+        "name": "pkg:clod/com.clodhub/computer-players-class",
         "version": "1.1.0",
-        "digest": "a7c7d9b24c5c193634c12b2000afc9c5cf4d5e8e7d4384b88d2b3522ecd4c770"
+        "digest": "73bce90fb270c6db3504f625f20dc7caf6042215fc35db1b8c1a1fe0a0074f5b"
       },
       "descriptor": {
-        "format": 2,
-        "name": "clodhub/computer-players-class",
+        "format": 3,
+        "name": "pkg:clod/com.clodhub/computer-players-class",
         "version": "1.1.0",
         "title": "Computer players",
         "summary": "Computer opponents that take empty seats and act in their turn",
@@ -172,7 +173,7 @@
         "presentation": "none",
         "provides": [
           {
-            "type": "ae/computer-players",
+            "type": "com.clodhub/computer-players",
             "version": "1.0.0",
             "path": "classes/computer-players-class/computer-players.json",
             "modules": {
@@ -184,15 +185,15 @@
         ],
         "requires": [
           {
-            "type": "ae/player-strategy",
+            "type": "com.clodhub/player-strategy",
             "version": "1.0.0"
           },
           {
-            "type": "ae/game-clock",
+            "type": "com.clodhub/game-clock",
             "version": "1.0.0"
           },
           {
-            "type": "ae/seating",
+            "type": "com.clodhub/seating",
             "version": "1.0.0"
           }
         ],
@@ -237,11 +238,11 @@
           },
           {
             "path": "classes/computer-players-class/computer-players.json",
-            "digest": "7ae42500d0a299cfc06a14d8167c5ec9f19c650330091f15ac5d702f96c6f228"
+            "digest": "9504f5e6aec2cfc35a3de98caa76d348e54b8e3979a15cc2a3964f7e33a22b8a"
           },
           {
             "path": "classes/computer-players-class/runtime.mjs",
-            "digest": "7440f3891614c423f74668cb5a2445fea58bbfa4d7c740c8e8a855d1d9300d43"
+            "digest": "1d85f0dae92d5c6c859cd48a4211a933718ae3e168554a2b00806183c4b661f0"
           }
         ],
         "verification": [
@@ -273,9 +274,9 @@
   ],
   "implements": [
     {
-      "name": "clodhub/computer-players-class",
+      "name": "pkg:clod/com.clodhub/computer-players-class",
       "version": "1.1.0",
-      "digest": "a7c7d9b24c5c193634c12b2000afc9c5cf4d5e8e7d4384b88d2b3522ecd4c770"
+      "digest": "73bce90fb270c6db3504f625f20dc7caf6042215fc35db1b8c1a1fe0a0074f5b"
     }
   ],
   "upstream": [],

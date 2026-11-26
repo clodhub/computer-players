@@ -27,7 +27,7 @@ test("mode derives enabled, fillEmptySeats and takeOverAbsent; the default is on
   assert.deepEqual(derived("fill-empty"), ["fill-empty", true, true, true]);
   assert.deepEqual(derived("none"), ["none", false, false, false]);
   assert.deepEqual(MODES, ["none", "on-request", "fill-empty"]);
-  for (const mode of MODES) assert.ok(/^[A-Za-z][A-Za-z0-9 -]{0,63}$/.test(mode), "each mode fits aepm's label grammar");
+  for (const mode of MODES) assert.ok(/^[A-Za-z][A-Za-z0-9 -]{0,63}$/.test(mode), "each mode fits clod's label grammar");
   assert.throws(() => checkSettings({ mode: "always" as ComputerMode }), /mode must be one of/);
   assert.throws(() => checkSettings({ mode: true as unknown as ComputerMode }));
 });
@@ -41,7 +41,7 @@ test("name lists parse from the installer's space separated text", () => {
 test("names may be one space separated text that fits the installer's label grammar", () => {
   const LABEL = /^[A-Za-z][A-Za-z0-9 -]{0,63}$/;
   const installerDefault = DEFAULT_NAMES.join(" ");
-  assert.ok(LABEL.test(installerDefault), "the default setting text matches aepm's label grammar");
+  assert.ok(LABEL.test(installerDefault), "the default setting text matches clod's label grammar");
   assert.deepEqual(parseNames(installerDefault), DEFAULT_NAMES);
   assert.deepEqual(checkSettings({ names: installerDefault }).names, DEFAULT_NAMES);
   assert.deepEqual(checkSettings({ names: "Ann Bob" }).names, ["Ann", "Bob"]);

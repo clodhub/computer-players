@@ -24,12 +24,12 @@ Dependencies: none.
 `tools.lock.json` pins verification tools: node 26.5. Licence: `Apache-2.0` (`LICENCE`, `NOTICE`).
 
 ## Provided interfaces
-- `interfaces/computer-players.json` defines `computer-players` (ae/computer-players) version 1.0.0: an OpenRPC 1.3.2 document, one method per function (a member of a created object is `<Type>.<member>`), with parameter, result and data types as JSON Schema 2020-12 (`components.schemas`) and thrown errors under `errors`.
+- `interfaces/computer-players.json` defines `computer-players` (com.clodhub/computer-players) version 1.0.0: an OpenRPC 1.3.2 document, one method per function (a member of a created object is `<Type>.<member>`), with parameter, result and data types as JSON Schema 2020-12 (`components.schemas`) and thrown errors under `errors`.
 
 ## Required interfaces
-- `player-strategy` (ae/player-strategy) version 1.0.0, supplied by the recipe or application.
-- `game-clock` (ae/game-clock) version 1.0.0, supplied by the recipe or application.
-- `seating` (ae/seating) version 1.0.0, supplied by the recipe or application.
+- `player-strategy` (com.clodhub/player-strategy) version 1.0.0, supplied by the recipe or application.
+- `game-clock` (com.clodhub/game-clock) version 1.0.0, supplied by the recipe or application.
+- `seating` (com.clodhub/seating) version 1.0.0, supplied by the recipe or application.
 
 Each `interfaces/required-<id>.json` is a byte copy of the providing component's document.
 
@@ -43,7 +43,7 @@ Build it once with `createComputers(settings, {strategy, clock, seating})` from 
 No service is deployed. The only state is the strategy's memory, part of the game state the room stores. No accounts or keys.
 
 ## Verification
-`node --test tests/web.test.ts` checks settings, neutral default names (none of the recipe's poker names), name list parsing (space separated, the default fitting aepm's label grammar), `mode` (the default, the three derived values for each mode, refusal of an unknown mode), mode `none`, adding until names or seats run out, filling, take-over of absent players, deadline arithmetic (settle, gap, thinking time, bounds), wake time, rebuy time, strategy calls that cannot change the stored memory, and the runnable consumer. The tests use small stand-ins for the strategy, clock and seating (`tests/fakes.ts`). No Swift or Kotlin: the recipe's clients have no computer-player code.
+`node --test tests/web.test.ts` checks settings, neutral default names (none of the recipe's poker names), name list parsing (space separated, the default fitting clod's label grammar), `mode` (the default, the three derived values for each mode, refusal of an unknown mode), mode `none`, adding until names or seats run out, filling, take-over of absent players, deadline arithmetic (settle, gap, thinking time, bounds), wake time, rebuy time, strategy calls that cannot change the stored memory, and the runnable consumer. The tests use small stand-ins for the strategy, clock and seating (`tests/fakes.ts`). No Swift or Kotlin: the recipe's clients have no computer-player code.
 
 - `node --test tests/web.test.ts` (web, required-local; tools: node 26.5)
 
